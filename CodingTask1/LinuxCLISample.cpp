@@ -51,13 +51,11 @@ int ToggleFunc(char* inputGpio, char* outputGpio)
 		if(buff == '0')
 		{
 			LogMessage("gpio %s OFF\n",inputGpio); 
-			printf("gpio %s OFF\n",inputGpio); 
 			write(outputfd, GPIO_LOW, 4);
 		}	
 		else if(buff == '1')
 		{
-			LogMessage("gpio %s ON",inputGpio); 
-			printf("gpio %s ON",inputGpio); 
+			LogMessage("gpio %s ON\n",inputGpio); 
 			if(toggleFlag == false)
 			{
 				toggleFlag = true;			
@@ -115,7 +113,6 @@ int main(int argc, char *argv[]){
 		return -1;
 	}
 
-	LogMessage("LM -i %s -o %s\n",gpioInputName, gpioOutputName);
-	printf("P -i %s -o %s\n",gpioInputName, gpioOutputName);
+	LogMessage("-i %s -o %s\n",gpioInputName, gpioOutputName);
 	ToggleFunc(gpioInputName, gpioOutputName);
 }

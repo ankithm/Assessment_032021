@@ -1,0 +1,30 @@
+./LinuxCLISample -i /sys/class/gpio/gpio105/value -o /sys/class/leds/EB:blue:usr1/brightness --log
+
+root@ /usr/bin# ./LinuxCLISample
+Invalid Arguments.. type --help for information
+root@ /usr/bin# ./LinuxCLISample --help
+TO DO Help Info
+root@ /usr/bin# ./LinuxCLISample -i /sys/class/gpio/gpio105/value -o /sys/class/leds/EB:blue:usr1/brightness
+^C
+root@ /usr/bin# ./LinuxCLISample -i /sys/class/gpio/gpio105/value -o /sys/class/leds/EB:blue:usr1/brightness --log
+-i /sys/class/gpio/gpio105/value -o /sys/class/leds/EB:blue:usr1/brightness
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value OFF
+gpio /sys/class/gpio/gpio105/value OFF
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value OFF
+gpio /sys/class/gpio/gpio105/value OFF
+gpio /sys/class/gpio/gpio105/value OFF
+gpio /sys/class/gpio/gpio105/value ON
+gpio /sys/class/gpio/gpio105/value ON
+^C
+root@ /usr/bin# ./LinuxCLISample --log                                           Invalid Arguments.. type --help for information
+root@ /usr/bin#

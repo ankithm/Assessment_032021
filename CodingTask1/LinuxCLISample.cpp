@@ -10,7 +10,6 @@
 char GPIO_LOW[4]="0";
 char GPIO_HIGH[4]="250";
 
-
 bool EnableLogging=false;
 
 int LogMessage(const char *format, ...)
@@ -49,13 +48,16 @@ int ToggleFunc(char* inputGpio, char* outputGpio)
 	while(1)
 	{
 		ret = read(inputfd, (char *)&buff, 1);
-		LogMessage("gpio <%s> %c",inputGpio, buff); 
 		if(buff == '0')
 		{
+			LogMessage("gpio %s OFF\n",inputGpio); 
+			printf("gpio %s OFF\n",inputGpio); 
 			write(outputfd, GPIO_LOW, 4);
 		}	
 		else if(buff == '1')
 		{
+			LogMessage("gpio %s ON",inputGpio); 
+			printf("gpio %s ON",inputGpio); 
 			if(toggleFlag == false)
 			{
 				toggleFlag = true;			
@@ -108,5 +110,7 @@ int main(int argc, char *argv[]){
 		return -1;
 	}
 
+	LogMessage("LM -i %s -o %s\n",gpioInputName, gpioOutputName);
+	printf("P -i %s -o %s\n",gpioInputName, gpioOutputName);
 	ToggleFunc(gpioInputName, gpioOutputName);
 }

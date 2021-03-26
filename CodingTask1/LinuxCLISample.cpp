@@ -7,6 +7,8 @@
 #define MAX_ARGS 10
 #define MAX_ARG_LENGTH 255
 
+char GPIO_LOW[4]="0";
+char GPIO_HIGH[4]="250";
 
 
 bool EnableLogging=false;
@@ -20,6 +22,53 @@ int LogMessage(const char *format, ...)
 		printf(format, args);
         	va_end(args);
 	}
+}
+
+
+int ToggleFunc(char* inputGpio, char* outputGpio)
+{
+	int inputfd = -1, outputfd = -1;
+	int ret=0;
+	bool toggleFlag = false;
+	char buff;
+
+	inputfd = open(inputGpio, O_RDONLY);
+	if(inputfd < 0)
+	{
+		LogMessage("%s open failed", inputGpio);
+		return -1;
+	}
+
+	outputfd = open(outputGpio, O_RDWR);
+	if(outputfd < 0)
+	{
+		LogMessage("%s open failed", outputGpio);
+		return -1;
+	}
+
+	while(1)
+	{
+		ret = read(inputfd, (char *)&buff, 1);
+		LogMessage("gpio <%s> %c",inputGpio, buff); 
+		if(buff == '0')
+		{
+			write(outputfd, GPIO_LOW, 4);
+		}	
+		else if(buff == '1')
+		{
+			if(toggleFlag == false)
+			{
+				toggleFlag = true;			
+				write(outputfd, GPIO_LOW, 4);
+			}
+			else
+			{
+				toggleFlag = false;
+				write(outputfd, GPIO_HIGH, 4);
+			}
+		}
+		usleep(1000000);		//1sec
+	}        
 }
 
 int main(int argc, char *argv[]){
@@ -59,4 +108,5 @@ int main(int argc, char *argv[]){
 		return -1;
 	}
 
+	ToggleFunc(gpioInputName, gpioOutputName);
 }

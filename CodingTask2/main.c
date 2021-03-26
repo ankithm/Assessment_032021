@@ -19,7 +19,7 @@ void sortArray(int arr[], int size)
 {
     int zeroIndex = 0;
     int oneIndex = 0;
-    int twoIndex = size -1;
+    int twoIndex = size - 1;
     
     //for(int i = 0; i < size, oneIndex <= twoIndex; i++)
     while(oneIndex <= twoIndex)
@@ -27,16 +27,13 @@ void sortArray(int arr[], int size)
         switch(arr[oneIndex])
         {
             case 0:
-                  swap(&arr[zeroIndex], &arr[oneIndex]);
-                  zeroIndex++;
-                  oneIndex++;
+                  swap(&arr[zeroIndex++], &arr[oneIndex++]);
                   break;
             case 1:
                   oneIndex++;
                   break;
             case 2:
-                  swap(&arr[oneIndex], &arr[twoIndex]);
-                  twoIndex--;
+                  swap(&arr[oneIndex], &arr[twoIndex--]);
                   break;
         }
     }
@@ -45,10 +42,10 @@ void sortArray(int arr[], int size)
 int main()
 {
     int foo[30] = {2,2,1,0,1,0,1,1,0,2,2,1,1,1,2,0,0,1,1,0,1,0,1,2,0,0,0,1,1,2};
+    int arrSize = sizeof(foo)/sizeof(foo[0]);
+    sortArray(foo, arrSize);
     
-    sortArray(foo, 30);
-    
-    for(int i = 0; i < 30; i++)
+    for(int i = 0; i < arrSize; i++)
     {
         printf(" %d ", foo[i]);
     }

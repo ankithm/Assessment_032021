@@ -18,7 +18,7 @@ int LogMessage(const char *format, ...)
 	if(EnableLogging)
 	{
 		va_start(args, format);
-		printf(format, args);
+		vfprintf(stdout, format, args);
         	va_end(args);
 	}
 }
@@ -69,6 +69,11 @@ int ToggleFunc(char* inputGpio, char* outputGpio)
 				write(outputfd, GPIO_HIGH, 4);
 			}
 		}
+		else
+		{
+			printf("other than 0 and 1");
+		}
+		lseek(inputfd, 0, SEEK_SET);
 		usleep(1000000);		//1sec
 	}        
 }

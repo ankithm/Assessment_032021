@@ -2,24 +2,33 @@
 #include "string.h"
 #include "stdarg.h"
 #include <unistd.h>
-
+#include <fcntl.h>
 
 #define MAX_ARGS 10
 #define MAX_ARG_LENGTH 255
 
 
 
+bool EnableLogging=false;
 
+int LogMessage(const char *format, ...)
+{
+	va_list args;
+	if(EnableLogging)
+	{
+		va_start(args, format);
+		printf(format, args);
+        	va_end(args);
+	}
+}
 
 int main(int argc, char *argv[]){
-
-	bool enableLogging=false;
 	bool gpioInputFlag=false, gpioOutputFlag=false;
         char gpioInputName[MAX_ARG_LENGTH], gpioOutputName[MAX_ARG_LENGTH];
 
 	for(int i=1; i< argc; ++i){
 		if(0==strcmp(argv[i],"--log")){
-			enableLogging=true;
+			EnableLogging=true;
 		}
 		else if(0==strcmp(argv[i],"--help")){
 			//TO DO -> print help info

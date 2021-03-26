@@ -31,7 +31,7 @@ case "$1" in
         $0 stop && $0 start
         ;;
     *)
-        echo "Usage: service $0 {start|stop|restart|status}"
+        echo "Usage: service $0 {start|stop|restart}"
         exit 1
 esac
 

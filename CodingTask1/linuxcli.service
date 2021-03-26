@@ -1,0 +1,12 @@
+[Unit]
+Description=Linux CLI Application Service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/LinuxCLI_Service.sh start
+ExecReload=/usr/bin/LinuxCLI_Serivce.sh restart
+ExecStop=/usr/bin/LinuxCLI_Service.sh stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

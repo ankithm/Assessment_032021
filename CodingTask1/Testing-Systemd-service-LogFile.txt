@@ -1,0 +1,37 @@
+root@ /usr/bin# systemctl start linuxcli.service
+root@ /usr/bin# ps -eo comm | grep LinuxCLISample
+LinuxCLISample
+root@ /usr/bin# systemctl stop linuxcli.service
+root@ /usr/bin#
+root@ /usr/bin# ps -eo comm | grep LinuxCLISample
+root@ /usr/bin# systemctl start linuxcli.service
+root@ /usr/bin# systemctl status linuxcli.service
+[[0;1;32m●[[0m linuxcli.service - Linux CLI Application Service
+   Loaded: loaded (/lib/systemd/system/linuxcli.service; disabled; vendor preset: disabled)
+   Active: [[0;1;32mactive (exited)[[0m since Wed 2021-02-10 05:38:45 IST; 5s ago
+  Process: 5687 ExecStart=/usr/bin/LinuxCLI_Service.sh start (code=exited, status=0/SUCCESS)
+ Main PID: 5687 (code=exited, status=0/SUCCESS)
+
+Feb 10 05:38:45  systemd[1]: Starting Linux CLI Application Service...
+Feb 10 05:38:45  LinuxCLI_Service.sh[5687]: /usr/bin/LinuxCLI_Service.sh: line 13
+: echo: write error: Device or resource busy
+Feb 10 05:38:45  LinuxCLI_Service.sh[5687]: Starting Linux CLI App
+Feb 10 05:38:45  systemd[1]: Started Linux CLI Application Service.
+
+root@ /usr/bin# systemctl stop linuxcli.service
+root@ /usr/bin# systemctl status linuxcli.service
+● linuxcli.service - Linux CLI Application Service
+   Loaded: loaded (/lib/systemd/system/linuxcli.service; disabled; vendor preset: disabled)
+   Active: inactive (dead)
+
+Feb 10 05:37:23  systemd[1]: linuxcli.service: Succeeded.
+Feb 10 05:37:23  systemd[1]: Stopped Linux CLI Application Service.
+Feb 10 05:38:45  systemd[1]: Starting Linux CLI Application Service...
+Feb 10 05:38:45  LinuxCLI_Service.sh[5687]: /usr/bin/LinuxCLI_Service.sh: line 13
+: echo: write error: Device or resource busy
+Feb 10 05:38:45  LinuxCLI_Service.sh[5687]: Starting Linux CLI App
+Feb 10 05:38:45  systemd[1]: Started Linux CLI Application Service.
+Feb 10 05:40:19  systemd[1]: Stopping Linux CLI Application Service...
+Feb 10 05:40:20  LinuxCLI_Service.sh[5798]: Stopping Linux CLI App
+Feb 10 05:40:20  systemd[1]: linuxcli.service: Succeeded.
+Feb 10 05:40:20  systemd[1]: Stopped Linux CLI Application Service.
